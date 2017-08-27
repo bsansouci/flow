@@ -1,5 +1,3 @@
-*.ml
-*.mll
 TARGETS
 Makefile
 _build/
