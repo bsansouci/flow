@@ -1,0 +1,56 @@
+{
+  "name": "flow",
+  "sources": [{
+    "dir": "src",
+    "files": {
+      "slow-re": "*",
+      "excludes": [
+        "flow.ml",
+        "flow_dot_js.ml"
+      ],
+    },
+    "subdirs": [{"dir": "parser", "subdirs": [{"dir": "js", "kind": "js"}]}, "stubs", {
+      "dir": "common",
+      "files": ["semver.ml", "flowExitStatus.ml", "span.ml", "reason.ml", "files.ml", "verbose.ml", "path_matcher.ml", "options.ml", ],
+      "subdirs": ["errors", {
+        "dir": "utils",
+        "files": ["listUtils.ml", "utils_js.ml"]
+      }, "profiling", "config"]
+    }]
+  }, {
+    "dir": "hack",
+    "files": {
+      "slow-re": "*.ml[i]*",
+      "excludes": [
+        "hackfmt.ml",
+        "hh_file_parse.ml"
+      ]
+    },
+    "subdirs": [{
+      "dir": "heap",
+      "files": ["ident.ml"],
+    },{
+      "dir": "injection",
+      "files": {
+        "excludes": ["injector_config.mli"],
+        "slow-re": "*"
+      },
+      "subdirs": "default_injector"
+    }, {
+      "dir": "third-party",
+      "subdirs": [{
+        "dir": "core",
+      }]
+    }, {
+      "dir": "utils",
+      "files": ["measure.ml", "tty.ml", "string_utils.ml", "utils.ml", "core.ml", "sys_utils.ml", "path.ml",
+        "path.mli",
+      ],
+      "subdirs": [{
+        "dir": "collections",
+        "files": ["sSet.ml", "intKey.ml", "iMap.ml", "stringKey.ml", "myMap_sig.ml", "myMap.ml", "sMap.ml"]
+      }, "hh_json", "disk"]
+    }]
+  }],
+  "build_script": ["ocamllex src/parser/lexer_flow.mll"],
+}
