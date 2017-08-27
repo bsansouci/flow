@@ -8,7 +8,7 @@
  *
  *)
 
-let exports =
+(*let exports =
   if (Js.typeof (Js.Unsafe.js_expr "exports") != Js.string "undefined")
   then Js.Unsafe.js_expr "exports"
   else begin
@@ -16,4 +16,7 @@ let exports =
     Js.Unsafe.set Js.Unsafe.global "flow" exports;
     exports
   end
-let () = Js.Unsafe.set exports "parse" (Js.Unsafe.callback Flow_parser_js.parse)
+
+
+let () = Js.Unsafe.set exports "parse" (Js.Unsafe.callback Flow_parser_js.parse)*)
+let () = assert false

@@ -1,4 +1,4 @@
-# 11 "src/parser/lexer_flow.mll"
+# 11 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
  
 module Ast = Spider_monkey_ast
 
@@ -320,7 +320,7 @@ let debug_string_of_lexbuf (lb: Lexing.lexbuf) =
       lex_start_p = %s; \
       lex_curr_p = %s; \
     }"
-    lb.Lexing.lex_buffer
+    (Bytes.to_string lb.Lexing.lex_buffer)
     lb.Lexing.lex_buffer_len
     lb.Lexing.lex_abs_pos
     lb.Lexing.lex_start_pos
@@ -586,7 +586,7 @@ end
     let rec count start stop acc =
       if start = stop then acc
       else
-        let c = Char.code (lb.Lexing.lex_buffer.[start]) in
+        let c = Char.code (Bytes.get lb.Lexing.lex_buffer start) in
         let acc = if (c land 0xC0) = 0x80
           then acc + 1
           else acc in
@@ -732,9 +732,9 @@ end
       "null",    T_NULL;
     ]
 
-# 736 "src/parser/lexer_flow.ml"
+# 736 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 let __ocaml_lex_tables = {
-  Lexing.lex_base =
+  Lexing.lex_base = 
    "\000\000\178\255\179\255\185\255\066\000\067\000\084\000\087\000\
     \070\000\073\000\074\000\075\000\077\000\101\000\221\255\222\255\
     \223\255\224\255\227\255\228\255\229\255\230\255\231\255\232\255\
@@ -790,7 +790,7 @@ let __ocaml_lex_tables = {
     \141\003\170\002\186\002\157\002\201\022\217\002\155\002\252\255\
     \253\255\195\022\249\255\250\255\008\000\252\255\225\002\254\255\
     \255\255\253\255\251\255";
-  Lexing.lex_backtrk =
+  Lexing.lex_backtrk = 
    "\255\255\255\255\255\255\255\255\068\000\065\000\062\000\061\000\
     \060\000\059\000\069\000\071\000\066\000\067\000\255\255\255\255\
     \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
@@ -846,7 +846,7 @@ let __ocaml_lex_tables = {
     \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
     \255\255\255\255\255\255\255\255\005\000\255\255\006\000\255\255\
     \255\255\255\255\255\255";
-  Lexing.lex_default =
+  Lexing.lex_default = 
    "\001\000\000\000\000\000\000\000\255\255\255\255\255\255\255\255\
     \255\255\255\255\255\255\255\255\255\255\255\255\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
@@ -902,7 +902,7 @@ let __ocaml_lex_tables = {
     \255\255\255\255\255\255\255\255\255\255\255\255\255\255\000\000\
     \000\000\170\001\000\000\000\000\255\255\000\000\255\255\000\000\
     \000\000\000\000\000\000";
-  Lexing.lex_trans =
+  Lexing.lex_trans = 
    "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\038\000\040\000\008\001\038\000\038\000\070\001\077\001\
     \123\001\128\001\178\001\000\000\000\000\000\000\000\000\000\000\
@@ -1831,7 +1831,7 @@ let __ocaml_lex_tables = {
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \255\255";
-  Lexing.lex_check =
+  Lexing.lex_check = 
    "\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
     \255\255\000\000\000\000\007\001\000\000\000\000\069\001\076\001\
     \122\001\127\001\172\001\255\255\255\255\255\255\255\255\255\255\
@@ -2760,7 +2760,7 @@ let __ocaml_lex_tables = {
     \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
     \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
     \146\001";
-  Lexing.lex_base_code =
+  Lexing.lex_base_code = 
    "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
@@ -2816,7 +2816,7 @@ let __ocaml_lex_tables = {
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000";
-  Lexing.lex_backtrk_code =
+  Lexing.lex_backtrk_code = 
    "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
@@ -2872,7 +2872,7 @@ let __ocaml_lex_tables = {
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000";
-  Lexing.lex_default_code =
+  Lexing.lex_default_code = 
    "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
@@ -2928,7 +2928,7 @@ let __ocaml_lex_tables = {
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000";
-  Lexing.lex_trans_code =
+  Lexing.lex_trans_code = 
    "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\009\000\000\000\009\000\009\000\009\000\009\000\009\000\
     \101\000\000\000\101\000\101\000\101\000\101\000\101\000\000\000\
@@ -3030,7 +3030,7 @@ let __ocaml_lex_tables = {
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000";
-  Lexing.lex_check_code =
+  Lexing.lex_check_code = 
    "\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
     \255\255\053\000\255\255\060\000\053\000\053\000\060\000\060\000\
     \179\000\255\255\186\000\179\000\179\000\186\000\186\000\255\255\
@@ -3132,7 +3132,7 @@ let __ocaml_lex_tables = {
     \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
     \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
     \255\255\255\255";
-  Lexing.lex_code =
+  Lexing.lex_code = 
    "\255\001\255\255\003\255\001\255\255\002\255\255\000\002\255\000\
     \001\255\006\255\255\007\255\255\001\255\003\255\255\005\255\255\
     \004\255\255\000\004\255\000\005\255\000\003\255\000\006\255\000\
@@ -3147,32 +3147,32 @@ let __ocaml_lex_tables = {
 }
 
 let rec token env lexbuf =
-  lexbuf.Lexing.lex_mem <- Array.make 8 (-1); __ocaml_lex_token_rec env lexbuf 0
+  lexbuf.Lexing.lex_mem <- Array.make 8 (-1) ;   __ocaml_lex_token_rec env lexbuf 0
 and __ocaml_lex_token_rec env lexbuf __ocaml_lex_state =
   match Lexing.new_engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 798 "src/parser/lexer_flow.mll"
+# 798 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          Lexing.new_line lexbuf;
                          token env lexbuf
                        )
-# 3160 "src/parser/lexer_flow.ml"
+# 3160 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
-# 802 "src/parser/lexer_flow.mll"
+# 802 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( let env = illegal env (loc_of_lexbuf env lexbuf) in
                          token env lexbuf )
-# 3166 "src/parser/lexer_flow.ml"
+# 3166 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
-# 804 "src/parser/lexer_flow.mll"
+# 804 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          unicode_fix_cols lexbuf;
                          token env lexbuf )
-# 3173 "src/parser/lexer_flow.ml"
+# 3173 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 3 ->
-# 807 "src/parser/lexer_flow.mll"
+# 807 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          let start = loc_of_lexbuf env lexbuf in
                          let buf = Buffer.create 127 in
@@ -3180,25 +3180,25 @@ and __ocaml_lex_token_rec env lexbuf __ocaml_lex_state =
                          let env = save_comment env start _end buf true in
                          token env lexbuf
                        )
-# 3184 "src/parser/lexer_flow.ml"
+# 3184 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 4 ->
 let
-# 814 "src/parser/lexer_flow.mll"
+# 814 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                          sp
-# 3190 "src/parser/lexer_flow.ml"
+# 3190 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf (lexbuf.Lexing.lex_start_pos + 2) lexbuf.Lexing.lex_mem.(0)
 and
-# 814 "src/parser/lexer_flow.mll"
+# 814 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                              escape_type
-# 3195 "src/parser/lexer_flow.ml"
+# 3195 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_curr_pos
 and
-# 814 "src/parser/lexer_flow.mll"
+# 814 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                                              pattern
-# 3200 "src/parser/lexer_flow.ml"
+# 3200 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 815 "src/parser/lexer_flow.mll"
+# 815 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          if not (is_comment_syntax_enabled env) then
                            let start = loc_of_lexbuf env lexbuf in
@@ -3220,10 +3220,10 @@ and
                            | ":" -> env, T_COLON
                            | _ -> token env lexbuf
                        )
-# 3224 "src/parser/lexer_flow.ml"
+# 3224 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 5 ->
-# 836 "src/parser/lexer_flow.mll"
+# 836 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          if is_in_comment_syntax env then
                            let env = in_comment_syntax false env in
@@ -3232,10 +3232,10 @@ and
                            let () = yyback 1 lexbuf in
                            env, T_MULT
                        )
-# 3236 "src/parser/lexer_flow.ml"
+# 3236 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 6 ->
-# 844 "src/parser/lexer_flow.mll"
+# 844 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          let start = loc_of_lexbuf env lexbuf in
                          let buf = Buffer.create 127 in
@@ -3243,10 +3243,10 @@ and
                          let env = save_comment env start _end buf false in
                          token env lexbuf
                        )
-# 3247 "src/parser/lexer_flow.ml"
+# 3247 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 7 ->
-# 853 "src/parser/lexer_flow.mll"
+# 853 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( if lexbuf.Lexing.lex_start_pos = 0
                          then begin
                            let env, _ =
@@ -3254,15 +3254,15 @@ and
                            token env lexbuf
                           end else env, T_ERROR
                        )
-# 3258 "src/parser/lexer_flow.ml"
+# 3258 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 8 ->
 let
-# 861 "src/parser/lexer_flow.mll"
+# 861 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                  quote
-# 3264 "src/parser/lexer_flow.ml"
+# 3264 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 861 "src/parser/lexer_flow.mll"
+# 861 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          let start = loc_of_lexbuf env lexbuf in
                          let buf = Buffer.create 127 in
@@ -3273,10 +3273,10 @@ let
                            string_quote env quote buf raw octal lexbuf in
                          env, T_STRING (Loc.btwn start _end, Buffer.contents buf, Buffer.contents raw, octal)
                        )
-# 3277 "src/parser/lexer_flow.ml"
+# 3277 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 9 ->
-# 871 "src/parser/lexer_flow.mll"
+# 871 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( let cooked = Buffer.create 127 in
                          let raw = Buffer.create 127 in
                          let literal = Buffer.create 127 in
@@ -3295,379 +3295,379 @@ let
                            is_tail
                          )
                        )
-# 3299 "src/parser/lexer_flow.ml"
+# 3299 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 10 ->
 let
-# 890 "src/parser/lexer_flow.mll"
+# 890 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                      w
-# 3305 "src/parser/lexer_flow.ml"
+# 3305 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_curr_pos in
-# 891 "src/parser/lexer_flow.mll"
+# 891 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( illegal_number env lexbuf w (T_NUMBER BINARY) )
-# 3309 "src/parser/lexer_flow.ml"
+# 3309 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 11 ->
-# 892 "src/parser/lexer_flow.mll"
+# 892 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_NUMBER BINARY )
-# 3314 "src/parser/lexer_flow.ml"
+# 3314 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 12 ->
 let
-# 893 "src/parser/lexer_flow.mll"
+# 893 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                      w
-# 3320 "src/parser/lexer_flow.ml"
+# 3320 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_curr_pos in
-# 894 "src/parser/lexer_flow.mll"
+# 894 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( illegal_number env lexbuf w (T_NUMBER OCTAL) )
-# 3324 "src/parser/lexer_flow.ml"
+# 3324 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 13 ->
-# 895 "src/parser/lexer_flow.mll"
+# 895 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_NUMBER OCTAL )
-# 3329 "src/parser/lexer_flow.ml"
+# 3329 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 14 ->
 let
-# 896 "src/parser/lexer_flow.mll"
+# 896 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                            w
-# 3335 "src/parser/lexer_flow.ml"
+# 3335 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_curr_pos in
-# 897 "src/parser/lexer_flow.mll"
+# 897 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( illegal_number env lexbuf w (T_NUMBER LEGACY_OCTAL) )
-# 3339 "src/parser/lexer_flow.ml"
+# 3339 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 15 ->
-# 898 "src/parser/lexer_flow.mll"
+# 898 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_NUMBER LEGACY_OCTAL )
-# 3344 "src/parser/lexer_flow.ml"
+# 3344 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 16 ->
 let
-# 899 "src/parser/lexer_flow.mll"
+# 899 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                w
-# 3350 "src/parser/lexer_flow.ml"
+# 3350 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_curr_pos in
-# 900 "src/parser/lexer_flow.mll"
+# 900 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( illegal_number env lexbuf w (T_NUMBER NORMAL) )
-# 3354 "src/parser/lexer_flow.ml"
+# 3354 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 17 ->
-# 901 "src/parser/lexer_flow.mll"
+# 901 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_NUMBER NORMAL )
-# 3359 "src/parser/lexer_flow.ml"
+# 3359 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 18 ->
 let
-# 902 "src/parser/lexer_flow.mll"
+# 902 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        w
-# 3365 "src/parser/lexer_flow.ml"
+# 3365 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_curr_pos in
-# 903 "src/parser/lexer_flow.mll"
+# 903 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( illegal_number env lexbuf w (T_NUMBER NORMAL) )
-# 3369 "src/parser/lexer_flow.ml"
+# 3369 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 19 ->
-# 904 "src/parser/lexer_flow.mll"
+# 904 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_NUMBER NORMAL )
-# 3374 "src/parser/lexer_flow.ml"
+# 3374 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 20 ->
 let
-# 905 "src/parser/lexer_flow.mll"
+# 905 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                          w
-# 3380 "src/parser/lexer_flow.ml"
+# 3380 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_curr_pos in
-# 906 "src/parser/lexer_flow.mll"
+# 906 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( illegal_number env lexbuf w (T_NUMBER NORMAL) )
-# 3384 "src/parser/lexer_flow.ml"
+# 3384 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 21 ->
-# 908 "src/parser/lexer_flow.mll"
+# 908 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_NUMBER NORMAL )
-# 3389 "src/parser/lexer_flow.ml"
+# 3389 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 22 ->
 let
-# 912 "src/parser/lexer_flow.mll"
+# 912 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                     word
-# 3395 "src/parser/lexer_flow.ml"
+# 3395 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 913 "src/parser/lexer_flow.mll"
+# 913 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          unicode_fix_cols lexbuf;
                          try env, Hashtbl.find keywords word
                          with Not_found -> env, T_IDENTIFIER
                        )
-# 3403 "src/parser/lexer_flow.ml"
+# 3403 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 23 ->
-# 919 "src/parser/lexer_flow.mll"
+# 919 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_LCURLY )
-# 3408 "src/parser/lexer_flow.ml"
+# 3408 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 24 ->
-# 920 "src/parser/lexer_flow.mll"
+# 920 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_RCURLY )
-# 3413 "src/parser/lexer_flow.ml"
+# 3413 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 25 ->
-# 921 "src/parser/lexer_flow.mll"
+# 921 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_LPAREN )
-# 3418 "src/parser/lexer_flow.ml"
+# 3418 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 26 ->
-# 922 "src/parser/lexer_flow.mll"
+# 922 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_RPAREN )
-# 3423 "src/parser/lexer_flow.ml"
+# 3423 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 27 ->
-# 923 "src/parser/lexer_flow.mll"
+# 923 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_LBRACKET )
-# 3428 "src/parser/lexer_flow.ml"
+# 3428 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 28 ->
-# 924 "src/parser/lexer_flow.mll"
+# 924 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_RBRACKET )
-# 3433 "src/parser/lexer_flow.ml"
+# 3433 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 29 ->
-# 925 "src/parser/lexer_flow.mll"
+# 925 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_ELLIPSIS )
-# 3438 "src/parser/lexer_flow.ml"
+# 3438 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 30 ->
-# 926 "src/parser/lexer_flow.mll"
+# 926 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_PERIOD )
-# 3443 "src/parser/lexer_flow.ml"
+# 3443 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 31 ->
-# 927 "src/parser/lexer_flow.mll"
+# 927 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_SEMICOLON )
-# 3448 "src/parser/lexer_flow.ml"
+# 3448 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 32 ->
-# 928 "src/parser/lexer_flow.mll"
+# 928 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_COMMA )
-# 3453 "src/parser/lexer_flow.ml"
+# 3453 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 33 ->
-# 929 "src/parser/lexer_flow.mll"
+# 929 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_COLON )
-# 3458 "src/parser/lexer_flow.ml"
+# 3458 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 34 ->
-# 930 "src/parser/lexer_flow.mll"
+# 930 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_PLING )
-# 3463 "src/parser/lexer_flow.ml"
+# 3463 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 35 ->
-# 931 "src/parser/lexer_flow.mll"
+# 931 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_AND )
-# 3468 "src/parser/lexer_flow.ml"
+# 3468 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 36 ->
-# 932 "src/parser/lexer_flow.mll"
+# 932 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_OR )
-# 3473 "src/parser/lexer_flow.ml"
+# 3473 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 37 ->
-# 933 "src/parser/lexer_flow.mll"
+# 933 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_STRICT_EQUAL )
-# 3478 "src/parser/lexer_flow.ml"
+# 3478 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 38 ->
-# 934 "src/parser/lexer_flow.mll"
+# 934 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_STRICT_NOT_EQUAL )
-# 3483 "src/parser/lexer_flow.ml"
+# 3483 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 39 ->
-# 935 "src/parser/lexer_flow.mll"
+# 935 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_LESS_THAN_EQUAL )
-# 3488 "src/parser/lexer_flow.ml"
+# 3488 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 40 ->
-# 936 "src/parser/lexer_flow.mll"
+# 936 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_GREATER_THAN_EQUAL )
-# 3493 "src/parser/lexer_flow.ml"
+# 3493 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 41 ->
-# 937 "src/parser/lexer_flow.mll"
+# 937 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_EQUAL )
-# 3498 "src/parser/lexer_flow.ml"
+# 3498 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 42 ->
-# 938 "src/parser/lexer_flow.mll"
+# 938 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_NOT_EQUAL )
-# 3503 "src/parser/lexer_flow.ml"
+# 3503 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 43 ->
-# 939 "src/parser/lexer_flow.mll"
+# 939 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_INCR )
-# 3508 "src/parser/lexer_flow.ml"
+# 3508 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 44 ->
-# 940 "src/parser/lexer_flow.mll"
+# 940 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_DECR )
-# 3513 "src/parser/lexer_flow.ml"
+# 3513 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 45 ->
-# 941 "src/parser/lexer_flow.mll"
+# 941 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_LSHIFT_ASSIGN )
-# 3518 "src/parser/lexer_flow.ml"
+# 3518 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 46 ->
-# 942 "src/parser/lexer_flow.mll"
+# 942 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_LSHIFT )
-# 3523 "src/parser/lexer_flow.ml"
+# 3523 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 47 ->
-# 943 "src/parser/lexer_flow.mll"
+# 943 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_RSHIFT_ASSIGN )
-# 3528 "src/parser/lexer_flow.ml"
+# 3528 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 48 ->
-# 944 "src/parser/lexer_flow.mll"
+# 944 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_RSHIFT3_ASSIGN )
-# 3533 "src/parser/lexer_flow.ml"
+# 3533 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 49 ->
-# 945 "src/parser/lexer_flow.mll"
+# 945 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_RSHIFT3 )
-# 3538 "src/parser/lexer_flow.ml"
+# 3538 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 50 ->
-# 946 "src/parser/lexer_flow.mll"
+# 946 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_RSHIFT )
-# 3543 "src/parser/lexer_flow.ml"
+# 3543 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 51 ->
-# 947 "src/parser/lexer_flow.mll"
+# 947 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_PLUS_ASSIGN )
-# 3548 "src/parser/lexer_flow.ml"
+# 3548 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 52 ->
-# 948 "src/parser/lexer_flow.mll"
+# 948 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_MINUS_ASSIGN )
-# 3553 "src/parser/lexer_flow.ml"
+# 3553 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 53 ->
-# 949 "src/parser/lexer_flow.mll"
+# 949 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_MULT_ASSIGN )
-# 3558 "src/parser/lexer_flow.ml"
+# 3558 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 54 ->
-# 950 "src/parser/lexer_flow.mll"
+# 950 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_EXP_ASSIGN )
-# 3563 "src/parser/lexer_flow.ml"
+# 3563 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 55 ->
-# 951 "src/parser/lexer_flow.mll"
+# 951 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_MOD_ASSIGN )
-# 3568 "src/parser/lexer_flow.ml"
+# 3568 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 56 ->
-# 952 "src/parser/lexer_flow.mll"
+# 952 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_BIT_AND_ASSIGN )
-# 3573 "src/parser/lexer_flow.ml"
+# 3573 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 57 ->
-# 953 "src/parser/lexer_flow.mll"
+# 953 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_BIT_OR_ASSIGN )
-# 3578 "src/parser/lexer_flow.ml"
+# 3578 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 58 ->
-# 954 "src/parser/lexer_flow.mll"
+# 954 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_BIT_XOR_ASSIGN )
-# 3583 "src/parser/lexer_flow.ml"
+# 3583 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 59 ->
-# 955 "src/parser/lexer_flow.mll"
+# 955 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_LESS_THAN )
-# 3588 "src/parser/lexer_flow.ml"
+# 3588 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 60 ->
-# 956 "src/parser/lexer_flow.mll"
+# 956 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_GREATER_THAN )
-# 3593 "src/parser/lexer_flow.ml"
+# 3593 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 61 ->
-# 957 "src/parser/lexer_flow.mll"
+# 957 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_PLUS )
-# 3598 "src/parser/lexer_flow.ml"
+# 3598 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 62 ->
-# 958 "src/parser/lexer_flow.mll"
+# 958 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_MINUS )
-# 3603 "src/parser/lexer_flow.ml"
+# 3603 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 63 ->
-# 959 "src/parser/lexer_flow.mll"
+# 959 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_MULT )
-# 3608 "src/parser/lexer_flow.ml"
+# 3608 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 64 ->
-# 960 "src/parser/lexer_flow.mll"
+# 960 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_EXP )
-# 3613 "src/parser/lexer_flow.ml"
+# 3613 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 65 ->
-# 961 "src/parser/lexer_flow.mll"
+# 961 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_MOD )
-# 3618 "src/parser/lexer_flow.ml"
+# 3618 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 66 ->
-# 962 "src/parser/lexer_flow.mll"
+# 962 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_BIT_OR )
-# 3623 "src/parser/lexer_flow.ml"
+# 3623 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 67 ->
-# 963 "src/parser/lexer_flow.mll"
+# 963 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_BIT_AND )
-# 3628 "src/parser/lexer_flow.ml"
+# 3628 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 68 ->
-# 964 "src/parser/lexer_flow.mll"
+# 964 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_BIT_XOR )
-# 3633 "src/parser/lexer_flow.ml"
+# 3633 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 69 ->
-# 965 "src/parser/lexer_flow.mll"
+# 965 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_NOT )
-# 3638 "src/parser/lexer_flow.ml"
+# 3638 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 70 ->
-# 966 "src/parser/lexer_flow.mll"
+# 966 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_BIT_NOT )
-# 3643 "src/parser/lexer_flow.ml"
+# 3643 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 71 ->
-# 967 "src/parser/lexer_flow.mll"
+# 967 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_ASSIGN )
-# 3648 "src/parser/lexer_flow.ml"
+# 3648 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 72 ->
-# 968 "src/parser/lexer_flow.mll"
+# 968 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_ARROW )
-# 3653 "src/parser/lexer_flow.ml"
+# 3653 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 73 ->
-# 969 "src/parser/lexer_flow.mll"
+# 969 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_DIV_ASSIGN )
-# 3658 "src/parser/lexer_flow.ml"
+# 3658 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 74 ->
-# 970 "src/parser/lexer_flow.mll"
+# 970 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_DIV )
-# 3663 "src/parser/lexer_flow.ml"
+# 3663 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 75 ->
-# 971 "src/parser/lexer_flow.mll"
+# 971 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_AT )
-# 3668 "src/parser/lexer_flow.ml"
+# 3668 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 76 ->
-# 973 "src/parser/lexer_flow.mll"
+# 973 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( let env =
                            if is_in_comment_syntax env then
                              let loc = loc_of_lexbuf env lexbuf in
@@ -3675,19 +3675,19 @@ let
                            else env
                          in
                          env, T_EOF )
-# 3679 "src/parser/lexer_flow.ml"
+# 3679 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 77 ->
-# 980 "src/parser/lexer_flow.mll"
+# 980 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( let env = illegal env (loc_of_lexbuf env lexbuf) in
                          env, T_ERROR )
-# 3685 "src/parser/lexer_flow.ml"
+# 3685 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_token_rec env lexbuf __ocaml_lex_state
 
 and type_token env lexbuf =
-  lexbuf.Lexing.lex_mem <- Array.make 26 (-1);(* L=14 [17] <- p ; [16] <- p ; [15] <- p ; [14] <- p ; [13] <- p ; [12] <- p ; [11] <- p ; [10] <- p ; [9] <- p ; [8] <- p ; [7] <- p ; [6] <- p ; [5] <- p ; [4] <- p ;  *)
+  lexbuf.Lexing.lex_mem <- Array.make 26 (-1) ; (* L=14 [17] <- p ; [16] <- p ; [15] <- p ; [14] <- p ; [13] <- p ; [12] <- p ; [11] <- p ; [10] <- p ; [9] <- p ; [8] <- p ; [7] <- p ; [6] <- p ; [5] <- p ; [4] <- p ;  *)
   lexbuf.Lexing.lex_mem.(17) <- lexbuf.Lexing.lex_curr_pos ;
   lexbuf.Lexing.lex_mem.(16) <- lexbuf.Lexing.lex_curr_pos ;
   lexbuf.Lexing.lex_mem.(15) <- lexbuf.Lexing.lex_curr_pos ;
@@ -3702,51 +3702,51 @@ and type_token env lexbuf =
   lexbuf.Lexing.lex_mem.(6) <- lexbuf.Lexing.lex_curr_pos ;
   lexbuf.Lexing.lex_mem.(5) <- lexbuf.Lexing.lex_curr_pos ;
   lexbuf.Lexing.lex_mem.(4) <- lexbuf.Lexing.lex_curr_pos ;
- __ocaml_lex_type_token_rec env lexbuf 133
+  __ocaml_lex_type_token_rec env lexbuf 133
 and __ocaml_lex_type_token_rec env lexbuf __ocaml_lex_state =
   match Lexing.new_engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 989 "src/parser/lexer_flow.mll"
+# 989 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                            Lexing.new_line lexbuf;
                            type_token env lexbuf
                        )
-# 3715 "src/parser/lexer_flow.ml"
+# 3715 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
-# 993 "src/parser/lexer_flow.mll"
+# 993 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          unicode_fix_cols lexbuf;
                          type_token env lexbuf )
-# 3722 "src/parser/lexer_flow.ml"
+# 3722 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
-# 996 "src/parser/lexer_flow.mll"
+# 996 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( let start = loc_of_lexbuf env lexbuf in
                          let buf = Buffer.create 127 in
                          let env, _end = comment env buf lexbuf in
                          let env = save_comment env start _end buf true in
                          type_token env lexbuf
                        )
-# 3732 "src/parser/lexer_flow.ml"
+# 3732 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 3 ->
 let
-# 1002 "src/parser/lexer_flow.mll"
+# 1002 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                          sp
-# 3738 "src/parser/lexer_flow.ml"
+# 3738 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf (lexbuf.Lexing.lex_start_pos + 2) lexbuf.Lexing.lex_mem.(0)
 and
-# 1002 "src/parser/lexer_flow.mll"
+# 1002 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                              escape_type
-# 3743 "src/parser/lexer_flow.ml"
+# 3743 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_curr_pos
 and
-# 1002 "src/parser/lexer_flow.mll"
+# 1002 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                                              pattern
-# 3748 "src/parser/lexer_flow.ml"
+# 3748 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 1003 "src/parser/lexer_flow.mll"
+# 1003 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          if not (is_comment_syntax_enabled env) then
                            let start = loc_of_lexbuf env lexbuf in
@@ -3768,10 +3768,10 @@ and
                            | ":" -> env, T_COLON
                            | _ -> type_token env lexbuf
                        )
-# 3772 "src/parser/lexer_flow.ml"
+# 3772 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 4 ->
-# 1024 "src/parser/lexer_flow.mll"
+# 1024 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          if is_in_comment_syntax env then
                            let env = in_comment_syntax false env in
@@ -3780,10 +3780,10 @@ and
                            let () = yyback 1 lexbuf in
                            env, T_MULT
                        )
-# 3784 "src/parser/lexer_flow.ml"
+# 3784 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 5 ->
-# 1032 "src/parser/lexer_flow.mll"
+# 1032 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          let start = loc_of_lexbuf env lexbuf in
                          let buf = Buffer.create 127 in
@@ -3791,15 +3791,15 @@ and
                          let env = save_comment env start _end buf false in
                          type_token env lexbuf
                        )
-# 3795 "src/parser/lexer_flow.ml"
+# 3795 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 6 ->
 let
-# 1039 "src/parser/lexer_flow.mll"
+# 1039 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                  quote
-# 3801 "src/parser/lexer_flow.ml"
+# 3801 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1039 "src/parser/lexer_flow.mll"
+# 1039 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          let start = loc_of_lexbuf env lexbuf in
                          let buf = Buffer.create 127 in
@@ -3810,130 +3810,130 @@ let
                            string_quote env quote buf raw octal lexbuf in
                          env, T_STRING (Loc.btwn start _end, Buffer.contents buf, Buffer.contents raw, octal)
                        )
-# 3814 "src/parser/lexer_flow.ml"
+# 3814 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 7 ->
 let
-# 1055 "src/parser/lexer_flow.mll"
+# 1055 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
              neg
-# 3820 "src/parser/lexer_flow.ml"
+# 3820 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_mem.(0)
 and
-# 1055 "src/parser/lexer_flow.mll"
+# 1055 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                 num
-# 3825 "src/parser/lexer_flow.ml"
+# 3825 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_mem.(1)
 and
-# 1055 "src/parser/lexer_flow.mll"
+# 1055 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                                             w
-# 3830 "src/parser/lexer_flow.ml"
+# 3830 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(1) lexbuf.Lexing.lex_curr_pos in
-# 1056 "src/parser/lexer_flow.mll"
+# 1056 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
       ( illegal_number env lexbuf w (mk_num_singleton BINARY num neg) )
-# 3834 "src/parser/lexer_flow.ml"
+# 3834 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 8 ->
 let
-# 1057 "src/parser/lexer_flow.mll"
+# 1057 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
              neg
-# 3840 "src/parser/lexer_flow.ml"
+# 3840 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_mem.(0)
 and
-# 1057 "src/parser/lexer_flow.mll"
+# 1057 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                 num
-# 3845 "src/parser/lexer_flow.ml"
+# 3845 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_curr_pos in
-# 1058 "src/parser/lexer_flow.mll"
+# 1058 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
       ( env, mk_num_singleton BINARY num neg )
-# 3849 "src/parser/lexer_flow.ml"
+# 3849 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 9 ->
 let
-# 1059 "src/parser/lexer_flow.mll"
+# 1059 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
              neg
-# 3855 "src/parser/lexer_flow.ml"
+# 3855 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_mem.(0)
 and
-# 1059 "src/parser/lexer_flow.mll"
+# 1059 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                 num
-# 3860 "src/parser/lexer_flow.ml"
+# 3860 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_mem.(1)
 and
-# 1059 "src/parser/lexer_flow.mll"
+# 1059 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                                             w
-# 3865 "src/parser/lexer_flow.ml"
+# 3865 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(1) lexbuf.Lexing.lex_curr_pos in
-# 1060 "src/parser/lexer_flow.mll"
+# 1060 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
       ( illegal_number env lexbuf w (mk_num_singleton OCTAL num neg) )
-# 3869 "src/parser/lexer_flow.ml"
+# 3869 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 10 ->
 let
-# 1061 "src/parser/lexer_flow.mll"
+# 1061 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
              neg
-# 3875 "src/parser/lexer_flow.ml"
+# 3875 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_mem.(0)
 and
-# 1061 "src/parser/lexer_flow.mll"
+# 1061 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                 num
-# 3880 "src/parser/lexer_flow.ml"
+# 3880 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_curr_pos in
-# 1062 "src/parser/lexer_flow.mll"
+# 1062 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
       ( env, mk_num_singleton OCTAL num neg )
-# 3884 "src/parser/lexer_flow.ml"
+# 3884 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 11 ->
 let
-# 1063 "src/parser/lexer_flow.mll"
+# 1063 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
              neg
-# 3890 "src/parser/lexer_flow.ml"
+# 3890 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_mem.(0)
 and
-# 1063 "src/parser/lexer_flow.mll"
+# 1063 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                       num
-# 3895 "src/parser/lexer_flow.ml"
+# 3895 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_mem.(1)
 and
-# 1063 "src/parser/lexer_flow.mll"
+# 1063 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                                                   w
-# 3900 "src/parser/lexer_flow.ml"
+# 3900 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(1) lexbuf.Lexing.lex_curr_pos in
-# 1064 "src/parser/lexer_flow.mll"
+# 1064 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
       ( illegal_number env lexbuf w (mk_num_singleton LEGACY_OCTAL num neg) )
-# 3904 "src/parser/lexer_flow.ml"
+# 3904 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 12 ->
 let
-# 1065 "src/parser/lexer_flow.mll"
+# 1065 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
              neg
-# 3910 "src/parser/lexer_flow.ml"
+# 3910 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_mem.(0)
 and
-# 1065 "src/parser/lexer_flow.mll"
+# 1065 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                       num
-# 3915 "src/parser/lexer_flow.ml"
+# 3915 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_curr_pos in
-# 1066 "src/parser/lexer_flow.mll"
+# 1066 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
       ( env, mk_num_singleton LEGACY_OCTAL num neg )
-# 3919 "src/parser/lexer_flow.ml"
+# 3919 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 13 ->
 let
-# 1067 "src/parser/lexer_flow.mll"
+# 1067 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
              neg
-# 3925 "src/parser/lexer_flow.ml"
+# 3925 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_mem.(0)
 and
-# 1067 "src/parser/lexer_flow.mll"
+# 1067 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                 num
-# 3930 "src/parser/lexer_flow.ml"
+# 3930 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_mem.(1)
 and
-# 1067 "src/parser/lexer_flow.mll"
+# 1067 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                                       w
-# 3935 "src/parser/lexer_flow.ml"
+# 3935 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(1) lexbuf.Lexing.lex_curr_pos in
-# 1068 "src/parser/lexer_flow.mll"
+# 1068 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
       (
         let env, singleton =
           try env, mk_num_singleton NORMAL num neg
@@ -3943,20 +3943,20 @@ and
             env, T_NUMBER_SINGLETON_TYPE (NORMAL, 789.0) in
         illegal_number env lexbuf w singleton
       )
-# 3947 "src/parser/lexer_flow.ml"
+# 3947 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 14 ->
 let
-# 1077 "src/parser/lexer_flow.mll"
+# 1077 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
              neg
-# 3953 "src/parser/lexer_flow.ml"
+# 3953 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_mem.(0)
 and
-# 1077 "src/parser/lexer_flow.mll"
+# 1077 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                 num
-# 3958 "src/parser/lexer_flow.ml"
+# 3958 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_curr_pos in
-# 1078 "src/parser/lexer_flow.mll"
+# 1078 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
       (
         try env, mk_num_singleton NORMAL num neg
         with _ when Sys.win32 ->
@@ -3964,244 +3964,244 @@ and
           let env = lex_error env loc Parse_error.WindowsFloatOfString in
           env, T_NUMBER_SINGLETON_TYPE (NORMAL, 789.0)
       )
-# 3968 "src/parser/lexer_flow.ml"
+# 3968 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 15 ->
 let
-# 1085 "src/parser/lexer_flow.mll"
+# 1085 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
              neg
-# 3974 "src/parser/lexer_flow.ml"
+# 3974 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_mem.(0)
 and
-# 1085 "src/parser/lexer_flow.mll"
+# 1085 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                 num
-# 3979 "src/parser/lexer_flow.ml"
+# 3979 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_mem.(1)
 and
-# 1085 "src/parser/lexer_flow.mll"
+# 1085 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                               w
-# 3984 "src/parser/lexer_flow.ml"
+# 3984 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(1) lexbuf.Lexing.lex_curr_pos in
-# 1086 "src/parser/lexer_flow.mll"
+# 1086 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
       ( illegal_number env lexbuf w (mk_num_singleton NORMAL num neg) )
-# 3988 "src/parser/lexer_flow.ml"
+# 3988 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 16 ->
 let
-# 1087 "src/parser/lexer_flow.mll"
+# 1087 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
              neg
-# 3994 "src/parser/lexer_flow.ml"
+# 3994 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_mem.(0)
 and
-# 1087 "src/parser/lexer_flow.mll"
+# 1087 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                 num
-# 3999 "src/parser/lexer_flow.ml"
+# 3999 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_curr_pos in
-# 1088 "src/parser/lexer_flow.mll"
+# 1088 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
       ( env, mk_num_singleton NORMAL num neg )
-# 4003 "src/parser/lexer_flow.ml"
+# 4003 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 17 ->
 let
-# 1089 "src/parser/lexer_flow.mll"
+# 1089 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
              neg
-# 4009 "src/parser/lexer_flow.ml"
+# 4009 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_mem.(0)
 and
-# 1089 "src/parser/lexer_flow.mll"
+# 1089 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                   num
-# 4014 "src/parser/lexer_flow.ml"
+# 4014 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(0) lexbuf.Lexing.lex_mem.(1)
 and
-# 1089 "src/parser/lexer_flow.mll"
+# 1089 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                                 w
-# 4019 "src/parser/lexer_flow.ml"
+# 4019 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(1) lexbuf.Lexing.lex_curr_pos in
-# 1090 "src/parser/lexer_flow.mll"
+# 1090 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
       ( illegal_number env lexbuf w (mk_num_singleton NORMAL num neg) )
-# 4023 "src/parser/lexer_flow.ml"
+# 4023 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 18 ->
 let
-# 1091 "src/parser/lexer_flow.mll"
+# 1091 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
              neg
-# 4029 "src/parser/lexer_flow.ml"
+# 4029 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(1) lexbuf.Lexing.lex_mem.(0)
 and
-# 1091 "src/parser/lexer_flow.mll"
+# 1091 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                   num
-# 4034 "src/parser/lexer_flow.ml"
+# 4034 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_mem.(3) lexbuf.Lexing.lex_mem.(2) in
-# 1093 "src/parser/lexer_flow.mll"
+# 1093 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
       ( env, mk_num_singleton NORMAL num neg )
-# 4038 "src/parser/lexer_flow.ml"
+# 4038 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 19 ->
 let
-# 1096 "src/parser/lexer_flow.mll"
+# 1096 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
             word
-# 4044 "src/parser/lexer_flow.ml"
+# 4044 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 1096 "src/parser/lexer_flow.mll"
+# 1096 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          unicode_fix_cols lexbuf;
                          try env, Hashtbl.find type_keywords word
                          with Not_found -> env, T_IDENTIFIER
                        )
-# 4052 "src/parser/lexer_flow.ml"
+# 4052 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 20 ->
-# 1101 "src/parser/lexer_flow.mll"
+# 1101 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_CHECKS )
-# 4057 "src/parser/lexer_flow.ml"
+# 4057 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 21 ->
-# 1103 "src/parser/lexer_flow.mll"
+# 1103 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_LBRACKET )
-# 4062 "src/parser/lexer_flow.ml"
+# 4062 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 22 ->
-# 1104 "src/parser/lexer_flow.mll"
+# 1104 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_RBRACKET )
-# 4067 "src/parser/lexer_flow.ml"
+# 4067 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 23 ->
-# 1105 "src/parser/lexer_flow.mll"
+# 1105 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_LCURLY )
-# 4072 "src/parser/lexer_flow.ml"
+# 4072 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 24 ->
-# 1106 "src/parser/lexer_flow.mll"
+# 1106 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_RCURLY )
-# 4077 "src/parser/lexer_flow.ml"
+# 4077 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 25 ->
-# 1107 "src/parser/lexer_flow.mll"
+# 1107 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_LCURLYBAR )
-# 4082 "src/parser/lexer_flow.ml"
+# 4082 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 26 ->
-# 1108 "src/parser/lexer_flow.mll"
+# 1108 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_RCURLYBAR )
-# 4087 "src/parser/lexer_flow.ml"
+# 4087 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 27 ->
-# 1109 "src/parser/lexer_flow.mll"
+# 1109 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_LPAREN )
-# 4092 "src/parser/lexer_flow.ml"
+# 4092 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 28 ->
-# 1110 "src/parser/lexer_flow.mll"
+# 1110 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_RPAREN )
-# 4097 "src/parser/lexer_flow.ml"
+# 4097 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 29 ->
-# 1111 "src/parser/lexer_flow.mll"
+# 1111 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_ELLIPSIS )
-# 4102 "src/parser/lexer_flow.ml"
+# 4102 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 30 ->
-# 1112 "src/parser/lexer_flow.mll"
+# 1112 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_PERIOD )
-# 4107 "src/parser/lexer_flow.ml"
+# 4107 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 31 ->
-# 1113 "src/parser/lexer_flow.mll"
+# 1113 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_SEMICOLON )
-# 4112 "src/parser/lexer_flow.ml"
+# 4112 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 32 ->
-# 1114 "src/parser/lexer_flow.mll"
+# 1114 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_COMMA )
-# 4117 "src/parser/lexer_flow.ml"
+# 4117 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 33 ->
-# 1115 "src/parser/lexer_flow.mll"
+# 1115 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_COLON )
-# 4122 "src/parser/lexer_flow.ml"
+# 4122 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 34 ->
-# 1116 "src/parser/lexer_flow.mll"
+# 1116 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_PLING )
-# 4127 "src/parser/lexer_flow.ml"
+# 4127 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 35 ->
-# 1117 "src/parser/lexer_flow.mll"
+# 1117 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_LBRACKET )
-# 4132 "src/parser/lexer_flow.ml"
+# 4132 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 36 ->
-# 1118 "src/parser/lexer_flow.mll"
+# 1118 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_RBRACKET )
-# 4137 "src/parser/lexer_flow.ml"
+# 4137 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 37 ->
-# 1120 "src/parser/lexer_flow.mll"
+# 1120 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_LESS_THAN )
-# 4142 "src/parser/lexer_flow.ml"
+# 4142 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 38 ->
-# 1121 "src/parser/lexer_flow.mll"
+# 1121 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_GREATER_THAN )
-# 4147 "src/parser/lexer_flow.ml"
+# 4147 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 39 ->
-# 1123 "src/parser/lexer_flow.mll"
+# 1123 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_ASSIGN )
-# 4152 "src/parser/lexer_flow.ml"
+# 4152 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 40 ->
-# 1125 "src/parser/lexer_flow.mll"
+# 1125 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_PLING )
-# 4157 "src/parser/lexer_flow.ml"
+# 4157 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 41 ->
-# 1127 "src/parser/lexer_flow.mll"
+# 1127 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_MULT )
-# 4162 "src/parser/lexer_flow.ml"
+# 4162 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 42 ->
-# 1129 "src/parser/lexer_flow.mll"
+# 1129 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_COLON )
-# 4167 "src/parser/lexer_flow.ml"
+# 4167 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 43 ->
-# 1131 "src/parser/lexer_flow.mll"
+# 1131 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_BIT_OR )
-# 4172 "src/parser/lexer_flow.ml"
+# 4172 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 44 ->
-# 1133 "src/parser/lexer_flow.mll"
+# 1133 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_BIT_AND )
-# 4177 "src/parser/lexer_flow.ml"
+# 4177 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 45 ->
-# 1135 "src/parser/lexer_flow.mll"
+# 1135 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_TYPEOF )
-# 4182 "src/parser/lexer_flow.ml"
+# 4182 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 46 ->
-# 1137 "src/parser/lexer_flow.mll"
+# 1137 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_ARROW )
-# 4187 "src/parser/lexer_flow.ml"
+# 4187 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 47 ->
-# 1139 "src/parser/lexer_flow.mll"
+# 1139 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_ASSIGN )
-# 4192 "src/parser/lexer_flow.ml"
+# 4192 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 48 ->
-# 1141 "src/parser/lexer_flow.mll"
+# 1141 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_PLUS )
-# 4197 "src/parser/lexer_flow.ml"
+# 4197 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 49 ->
-# 1142 "src/parser/lexer_flow.mll"
+# 1142 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_MINUS )
-# 4202 "src/parser/lexer_flow.ml"
+# 4202 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 50 ->
-# 1145 "src/parser/lexer_flow.mll"
+# 1145 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( let env =
                            if is_in_comment_syntax env then
                              let loc = loc_of_lexbuf env lexbuf in
@@ -4209,27 +4209,27 @@ let
                            else env
                          in
                          env, T_EOF )
-# 4213 "src/parser/lexer_flow.ml"
+# 4213 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 51 ->
-# 1152 "src/parser/lexer_flow.mll"
+# 1152 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, T_ERROR )
-# 4218 "src/parser/lexer_flow.ml"
+# 4218 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_type_token_rec env lexbuf __ocaml_lex_state
 
 and string_quote env q buf raw octal lexbuf =
-   __ocaml_lex_string_quote_rec env q buf raw octal lexbuf 256
+    __ocaml_lex_string_quote_rec env q buf raw octal lexbuf 256
 and __ocaml_lex_string_quote_rec env q buf raw octal lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
 let
-# 1157 "src/parser/lexer_flow.mll"
+# 1157 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                    q'
-# 4231 "src/parser/lexer_flow.ml"
+# 4231 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1157 "src/parser/lexer_flow.mll"
+# 1157 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                          (  Buffer.add_char raw q';
                           if q = q'
                           then env, loc_of_lexbuf env lexbuf, octal
@@ -4238,100 +4238,100 @@ let
                             string_quote env q buf raw octal lexbuf
                           end
                        )
-# 4242 "src/parser/lexer_flow.ml"
+# 4242 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
 let
-# 1165 "src/parser/lexer_flow.mll"
+# 1165 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
             e
-# 4248 "src/parser/lexer_flow.ml"
+# 4248 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1165 "src/parser/lexer_flow.mll"
+# 1165 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( Buffer.add_char raw e;
                          let env, octal' = string_escape env buf lexbuf in
                          let octal = octal' || octal in
                          Buffer.add_string raw (Lexing.lexeme lexbuf);
                          string_quote env q buf raw octal lexbuf )
-# 4256 "src/parser/lexer_flow.ml"
+# 4256 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
 let
-# 1170 "src/parser/lexer_flow.mll"
+# 1170 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                     x
-# 4262 "src/parser/lexer_flow.ml"
+# 4262 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 1170 "src/parser/lexer_flow.mll"
+# 1170 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( Buffer.add_string raw x;
                          let env = illegal env (loc_of_lexbuf env lexbuf) in
                          Buffer.add_string buf x;
                          env, loc_of_lexbuf env lexbuf, octal
                        )
-# 4270 "src/parser/lexer_flow.ml"
+# 4270 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 3 ->
 let
-# 1175 "src/parser/lexer_flow.mll"
+# 1175 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
          x
-# 4276 "src/parser/lexer_flow.ml"
+# 4276 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1175 "src/parser/lexer_flow.mll"
+# 1175 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( Buffer.add_char raw x;
                          Buffer.add_char buf x;
                          string_quote env q buf raw octal lexbuf )
-# 4282 "src/parser/lexer_flow.ml"
+# 4282 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_string_quote_rec env q buf raw octal lexbuf __ocaml_lex_state
 
 and string_escape env buf lexbuf =
-   __ocaml_lex_string_escape_rec env buf lexbuf 261
+    __ocaml_lex_string_escape_rec env buf lexbuf 261
 and __ocaml_lex_string_escape_rec env buf lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 1180 "src/parser/lexer_flow.mll"
+# 1180 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, false )
-# 4294 "src/parser/lexer_flow.ml"
+# 4294 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
-# 1181 "src/parser/lexer_flow.mll"
+# 1181 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_string buf "\\";
                         env, false )
-# 4300 "src/parser/lexer_flow.ml"
+# 4300 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
 let
-# 1183 "src/parser/lexer_flow.mll"
+# 1183 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                 a
-# 4306 "src/parser/lexer_flow.ml"
+# 4306 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf (lexbuf.Lexing.lex_start_pos + 1)
 and
-# 1183 "src/parser/lexer_flow.mll"
+# 1183 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                            b
-# 4311 "src/parser/lexer_flow.ml"
+# 4311 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf (lexbuf.Lexing.lex_start_pos + 2) in
-# 1184 "src/parser/lexer_flow.mll"
+# 1184 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let code = hexa_to_int a * 16 + hexa_to_int b in
                         List.iter (Buffer.add_char buf) (utf16to8 code);
                         env, false )
-# 4317 "src/parser/lexer_flow.ml"
+# 4317 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 3 ->
 let
-# 1187 "src/parser/lexer_flow.mll"
+# 1187 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                   a
-# 4323 "src/parser/lexer_flow.ml"
+# 4323 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos
 and
-# 1187 "src/parser/lexer_flow.mll"
+# 1187 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                    b
-# 4328 "src/parser/lexer_flow.ml"
+# 4328 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf (lexbuf.Lexing.lex_start_pos + 1)
 and
-# 1187 "src/parser/lexer_flow.mll"
+# 1187 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                     c
-# 4333 "src/parser/lexer_flow.ml"
+# 4333 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf (lexbuf.Lexing.lex_start_pos + 2) in
-# 1188 "src/parser/lexer_flow.mll"
+# 1188 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let code =
                           (oct_to_int a lsl 6) +
                           (oct_to_int b lsl 3) +
@@ -4349,98 +4349,98 @@ and
                         end;
                         env, true
                       )
-# 4353 "src/parser/lexer_flow.ml"
+# 4353 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 4 ->
 let
-# 1205 "src/parser/lexer_flow.mll"
+# 1205 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                   a
-# 4359 "src/parser/lexer_flow.ml"
+# 4359 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos
 and
-# 1205 "src/parser/lexer_flow.mll"
+# 1205 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                    b
-# 4364 "src/parser/lexer_flow.ml"
+# 4364 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf (lexbuf.Lexing.lex_start_pos + 1) in
-# 1206 "src/parser/lexer_flow.mll"
+# 1206 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let code =
                           (oct_to_int a lsl 3) +
                           (oct_to_int b) in
                         List.iter (Buffer.add_char buf) (utf16to8 code);
                         env, true
                       )
-# 4373 "src/parser/lexer_flow.ml"
+# 4373 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 5 ->
-# 1212 "src/parser/lexer_flow.mll"
+# 1212 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char buf (Char.chr 0x0); env, false )
-# 4378 "src/parser/lexer_flow.ml"
+# 4378 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 6 ->
-# 1213 "src/parser/lexer_flow.mll"
+# 1213 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char buf (Char.chr 0x8); env, false )
-# 4383 "src/parser/lexer_flow.ml"
+# 4383 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 7 ->
-# 1214 "src/parser/lexer_flow.mll"
+# 1214 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char buf (Char.chr 0xC); env, false )
-# 4388 "src/parser/lexer_flow.ml"
+# 4388 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 8 ->
-# 1215 "src/parser/lexer_flow.mll"
+# 1215 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char buf (Char.chr 0xA); env, false )
-# 4393 "src/parser/lexer_flow.ml"
+# 4393 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 9 ->
-# 1216 "src/parser/lexer_flow.mll"
+# 1216 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char buf (Char.chr 0xD); env, false )
-# 4398 "src/parser/lexer_flow.ml"
+# 4398 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 10 ->
-# 1217 "src/parser/lexer_flow.mll"
+# 1217 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char buf (Char.chr 0x9); env, false )
-# 4403 "src/parser/lexer_flow.ml"
+# 4403 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 11 ->
-# 1218 "src/parser/lexer_flow.mll"
+# 1218 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char buf (Char.chr 0xB); env, false )
-# 4408 "src/parser/lexer_flow.ml"
+# 4408 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 12 ->
 let
-# 1219 "src/parser/lexer_flow.mll"
+# 1219 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                   a
-# 4414 "src/parser/lexer_flow.ml"
+# 4414 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1220 "src/parser/lexer_flow.mll"
+# 1220 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let code = oct_to_int a in
                         List.iter (Buffer.add_char buf) (utf16to8 code);
                         env, true
                       )
-# 4421 "src/parser/lexer_flow.ml"
+# 4421 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 13 ->
 let
-# 1224 "src/parser/lexer_flow.mll"
+# 1224 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                 a
-# 4427 "src/parser/lexer_flow.ml"
+# 4427 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf (lexbuf.Lexing.lex_start_pos + 1)
 and
-# 1224 "src/parser/lexer_flow.mll"
+# 1224 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                            b
-# 4432 "src/parser/lexer_flow.ml"
+# 4432 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf (lexbuf.Lexing.lex_start_pos + 2)
 and
-# 1224 "src/parser/lexer_flow.mll"
+# 1224 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                       c
-# 4437 "src/parser/lexer_flow.ml"
+# 4437 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf (lexbuf.Lexing.lex_start_pos + 3)
 and
-# 1224 "src/parser/lexer_flow.mll"
+# 1224 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                                  d
-# 4442 "src/parser/lexer_flow.ml"
+# 4442 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf (lexbuf.Lexing.lex_start_pos + 4) in
-# 1225 "src/parser/lexer_flow.mll"
+# 1225 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let code =
                           (hexa_to_int a lsl 12) +
                           (hexa_to_int b lsl 8) +
@@ -4449,15 +4449,15 @@ and
                         List.iter (Buffer.add_char buf) (utf16to8 code);
                         env, false
                       )
-# 4453 "src/parser/lexer_flow.ml"
+# 4453 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 14 ->
 let
-# 1233 "src/parser/lexer_flow.mll"
+# 1233 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                   hex_code
-# 4459 "src/parser/lexer_flow.ml"
+# 4459 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf (lexbuf.Lexing.lex_start_pos + 2) (lexbuf.Lexing.lex_curr_pos + -1) in
-# 1234 "src/parser/lexer_flow.mll"
+# 1234 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       (
                         let code = int_of_string ("0x"^hex_code) in
                         (* 11.8.4.1 *)
@@ -4468,57 +4468,57 @@ let
                         List.iter (Buffer.add_char buf) (utf16to8 code);
                         env, false
                       )
-# 4472 "src/parser/lexer_flow.ml"
+# 4472 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 15 ->
 let
-# 1244 "src/parser/lexer_flow.mll"
+# 1244 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        c
-# 4478 "src/parser/lexer_flow.ml"
+# 4478 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1245 "src/parser/lexer_flow.mll"
+# 1245 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let env = illegal env (loc_of_lexbuf env lexbuf) in
                         Buffer.add_char buf c;
                         env, false )
-# 4484 "src/parser/lexer_flow.ml"
+# 4484 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 16 ->
-# 1249 "src/parser/lexer_flow.mll"
+# 1249 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Lexing.new_line lexbuf; env, false )
-# 4489 "src/parser/lexer_flow.ml"
+# 4489 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 17 ->
 let
-# 1250 "src/parser/lexer_flow.mll"
+# 1250 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
          c
-# 4495 "src/parser/lexer_flow.ml"
+# 4495 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1250 "src/parser/lexer_flow.mll"
+# 1250 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char buf c; env, false )
-# 4499 "src/parser/lexer_flow.ml"
+# 4499 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_string_escape_rec env buf lexbuf __ocaml_lex_state
 
 and comment env buf lexbuf =
-   __ocaml_lex_comment_rec env buf lexbuf 288
+    __ocaml_lex_comment_rec env buf lexbuf 288
 and __ocaml_lex_comment_rec env buf lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 1253 "src/parser/lexer_flow.mll"
+# 1253 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( let env = illegal env (loc_of_lexbuf env lexbuf) in
                          env, loc_of_lexbuf env lexbuf )
-# 4512 "src/parser/lexer_flow.ml"
+# 4512 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
-# 1255 "src/parser/lexer_flow.mll"
+# 1255 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( Lexing.new_line lexbuf;
                          Buffer.add_char buf '\n';
                          comment env buf lexbuf )
-# 4519 "src/parser/lexer_flow.ml"
+# 4519 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
-# 1258 "src/parser/lexer_flow.mll"
+# 1258 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          let loc = loc_of_lexbuf env lexbuf in
                          let env = if is_in_comment_syntax env
@@ -4527,10 +4527,10 @@ and __ocaml_lex_comment_rec env buf lexbuf __ocaml_lex_state =
                          in
                          env, loc
                        )
-# 4531 "src/parser/lexer_flow.ml"
+# 4531 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 3 ->
-# 1266 "src/parser/lexer_flow.mll"
+# 1266 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        (
                          if is_in_comment_syntax env
                          then env, loc_of_lexbuf env lexbuf
@@ -4539,33 +4539,33 @@ and __ocaml_lex_comment_rec env buf lexbuf __ocaml_lex_state =
                            comment env buf lexbuf
                          )
                        )
-# 4543 "src/parser/lexer_flow.ml"
+# 4543 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 4 ->
 let
-# 1274 "src/parser/lexer_flow.mll"
+# 1274 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
           c
-# 4549 "src/parser/lexer_flow.ml"
+# 4549 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1274 "src/parser/lexer_flow.mll"
+# 1274 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( Buffer.add_char buf c;
                          comment env buf lexbuf )
-# 4554 "src/parser/lexer_flow.ml"
+# 4554 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_comment_rec env buf lexbuf __ocaml_lex_state
 
 and line_comment env buf lexbuf =
-   __ocaml_lex_line_comment_rec env buf lexbuf 296
+    __ocaml_lex_line_comment_rec env buf lexbuf 296
 and __ocaml_lex_line_comment_rec env buf lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 1278 "src/parser/lexer_flow.mll"
+# 1278 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( env, loc_of_lexbuf env lexbuf )
-# 4566 "src/parser/lexer_flow.ml"
+# 4566 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
-# 1279 "src/parser/lexer_flow.mll"
+# 1279 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( let open Loc in
                          let { source; start; _end = { line; column; offset } }
                            = loc_of_lexbuf env lexbuf in
@@ -4577,299 +4577,299 @@ and __ocaml_lex_line_comment_rec env buf lexbuf __ocaml_lex_state =
                          } in
                          env, { source; start; _end; }
                        )
-# 4581 "src/parser/lexer_flow.ml"
+# 4581 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
 let
-# 1290 "src/parser/lexer_flow.mll"
+# 1290 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
          c
-# 4587 "src/parser/lexer_flow.ml"
+# 4587 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1290 "src/parser/lexer_flow.mll"
+# 1290 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        ( Buffer.add_char buf c;
                          line_comment env buf lexbuf )
-# 4592 "src/parser/lexer_flow.ml"
+# 4592 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_line_comment_rec env buf lexbuf __ocaml_lex_state
 
 and regexp env lexbuf =
-   __ocaml_lex_regexp_rec env lexbuf 300
+    __ocaml_lex_regexp_rec env lexbuf 300
 and __ocaml_lex_regexp_rec env lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 1294 "src/parser/lexer_flow.mll"
+# 1294 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, T_EOF )
-# 4604 "src/parser/lexer_flow.ml"
+# 4604 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
-# 1296 "src/parser/lexer_flow.mll"
+# 1296 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Lexing.new_line lexbuf;
                         regexp env lexbuf )
-# 4610 "src/parser/lexer_flow.ml"
+# 4610 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
-# 1298 "src/parser/lexer_flow.mll"
+# 1298 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( unicode_fix_cols lexbuf;
                         regexp env lexbuf )
-# 4616 "src/parser/lexer_flow.ml"
+# 4616 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 3 ->
-# 1300 "src/parser/lexer_flow.mll"
+# 1300 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let start = loc_of_lexbuf env lexbuf in
                         let buf = Buffer.create 127 in
                         let env, _end = line_comment env buf lexbuf in
                         let env = save_comment env start _end buf false in
                         regexp env lexbuf )
-# 4625 "src/parser/lexer_flow.ml"
+# 4625 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 4 ->
-# 1305 "src/parser/lexer_flow.mll"
+# 1305 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let start = loc_of_lexbuf env lexbuf in
                         let buf = Buffer.create 127 in
                         let env, _end = comment env buf lexbuf in
                         let env = save_comment env start _end buf true in
                         regexp env lexbuf )
-# 4634 "src/parser/lexer_flow.ml"
+# 4634 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 5 ->
-# 1310 "src/parser/lexer_flow.mll"
+# 1310 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let start = loc_of_lexbuf env lexbuf in
                         let buf = Buffer.create 127 in
                         let env, flags = regexp_body env buf lexbuf in
                         let end_ = loc_of_lexbuf env lexbuf in
                         let loc = Loc.btwn start end_ in
                         env, T_REGEXP (loc, Buffer.contents buf, flags) )
-# 4644 "src/parser/lexer_flow.ml"
+# 4644 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 6 ->
-# 1316 "src/parser/lexer_flow.mll"
+# 1316 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let env = illegal env (loc_of_lexbuf env lexbuf) in
                         env, T_ERROR )
-# 4650 "src/parser/lexer_flow.ml"
+# 4650 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_regexp_rec env lexbuf __ocaml_lex_state
 
 and regexp_body env buf lexbuf =
-   __ocaml_lex_regexp_body_rec env buf lexbuf 323
+    __ocaml_lex_regexp_body_rec env buf lexbuf 323
 and __ocaml_lex_regexp_body_rec env buf lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 1320 "src/parser/lexer_flow.mll"
+# 1320 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let loc = loc_of_lexbuf env lexbuf in
                         let env = lex_error env loc Parse_error.UnterminatedRegExp in
                         env, "" )
-# 4664 "src/parser/lexer_flow.ml"
+# 4664 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
-# 1324 "src/parser/lexer_flow.mll"
+# 1324 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let loc = loc_of_lexbuf env lexbuf in
                         let env = lex_error env loc Parse_error.UnterminatedRegExp in
                         env, "" )
-# 4671 "src/parser/lexer_flow.ml"
+# 4671 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
 let
-# 1327 "src/parser/lexer_flow.mll"
+# 1327 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                   s
-# 4677 "src/parser/lexer_flow.ml"
+# 4677 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos (lexbuf.Lexing.lex_start_pos + 2) in
-# 1327 "src/parser/lexer_flow.mll"
+# 1327 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_string buf s;
                         regexp_body env buf lexbuf )
-# 4682 "src/parser/lexer_flow.ml"
+# 4682 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 3 ->
 let
-# 1329 "src/parser/lexer_flow.mll"
+# 1329 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                     flags
-# 4688 "src/parser/lexer_flow.ml"
+# 4688 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf (lexbuf.Lexing.lex_start_pos + 1) lexbuf.Lexing.lex_curr_pos in
-# 1330 "src/parser/lexer_flow.mll"
+# 1330 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, flags )
-# 4692 "src/parser/lexer_flow.ml"
+# 4692 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 4 ->
-# 1331 "src/parser/lexer_flow.mll"
+# 1331 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, "" )
-# 4697 "src/parser/lexer_flow.ml"
+# 4697 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 5 ->
 let
-# 1332 "src/parser/lexer_flow.mll"
+# 1332 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
            c
-# 4703 "src/parser/lexer_flow.ml"
+# 4703 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1332 "src/parser/lexer_flow.mll"
+# 1332 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char buf c;
                         let env = regexp_class env buf lexbuf in
                         regexp_body env buf lexbuf )
-# 4709 "src/parser/lexer_flow.ml"
+# 4709 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 6 ->
-# 1336 "src/parser/lexer_flow.mll"
+# 1336 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let loc = loc_of_lexbuf env lexbuf in
                         let env = lex_error env loc Parse_error.UnterminatedRegExp in
                         env, "" )
-# 4716 "src/parser/lexer_flow.ml"
+# 4716 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 7 ->
 let
-# 1339 "src/parser/lexer_flow.mll"
+# 1339 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
          c
-# 4722 "src/parser/lexer_flow.ml"
+# 4722 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1339 "src/parser/lexer_flow.mll"
+# 1339 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char buf c;
                         regexp_body env buf lexbuf )
-# 4727 "src/parser/lexer_flow.ml"
+# 4727 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_regexp_body_rec env buf lexbuf __ocaml_lex_state
 
 and regexp_class env buf lexbuf =
-   __ocaml_lex_regexp_class_rec env buf lexbuf 335
+    __ocaml_lex_regexp_class_rec env buf lexbuf 335
 and __ocaml_lex_regexp_class_rec env buf lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 1343 "src/parser/lexer_flow.mll"
+# 1343 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env )
-# 4739 "src/parser/lexer_flow.ml"
+# 4739 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
 let
-# 1344 "src/parser/lexer_flow.mll"
+# 1344 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
               s
-# 4745 "src/parser/lexer_flow.ml"
+# 4745 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos (lexbuf.Lexing.lex_start_pos + 2) in
-# 1344 "src/parser/lexer_flow.mll"
+# 1344 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_string buf s;
                         regexp_class env buf lexbuf )
-# 4750 "src/parser/lexer_flow.ml"
+# 4750 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
 let
-# 1346 "src/parser/lexer_flow.mll"
+# 1346 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                     s
-# 4756 "src/parser/lexer_flow.ml"
+# 4756 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos (lexbuf.Lexing.lex_start_pos + 2) in
-# 1346 "src/parser/lexer_flow.mll"
+# 1346 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_string buf s;
                         regexp_class env buf lexbuf )
-# 4761 "src/parser/lexer_flow.ml"
+# 4761 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 3 ->
 let
-# 1348 "src/parser/lexer_flow.mll"
+# 1348 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
            c
-# 4767 "src/parser/lexer_flow.ml"
+# 4767 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1348 "src/parser/lexer_flow.mll"
+# 1348 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char buf c; env )
-# 4771 "src/parser/lexer_flow.ml"
+# 4771 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 4 ->
 let
-# 1349 "src/parser/lexer_flow.mll"
+# 1349 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
          c
-# 4777 "src/parser/lexer_flow.ml"
+# 4777 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1349 "src/parser/lexer_flow.mll"
+# 1349 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char buf c;
                         regexp_class env buf lexbuf )
-# 4782 "src/parser/lexer_flow.ml"
+# 4782 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_regexp_class_rec env buf lexbuf __ocaml_lex_state
 
 and jsx_tag env lexbuf =
-   __ocaml_lex_jsx_tag_rec env lexbuf 342
+    __ocaml_lex_jsx_tag_rec env lexbuf 342
 and __ocaml_lex_jsx_tag_rec env lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 1353 "src/parser/lexer_flow.mll"
+# 1353 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, T_EOF )
-# 4794 "src/parser/lexer_flow.ml"
+# 4794 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
-# 1355 "src/parser/lexer_flow.mll"
+# 1355 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Lexing.new_line lexbuf;
                         jsx_tag env lexbuf )
-# 4800 "src/parser/lexer_flow.ml"
+# 4800 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
-# 1357 "src/parser/lexer_flow.mll"
+# 1357 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( unicode_fix_cols lexbuf;
                         jsx_tag env lexbuf )
-# 4806 "src/parser/lexer_flow.ml"
+# 4806 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 3 ->
-# 1359 "src/parser/lexer_flow.mll"
+# 1359 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let start = loc_of_lexbuf env lexbuf in
                         let buf = Buffer.create 127 in
                         let env, _end = line_comment env buf lexbuf in
                         let env = save_comment env start _end buf false in
                         jsx_tag env lexbuf )
-# 4815 "src/parser/lexer_flow.ml"
+# 4815 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 4 ->
-# 1364 "src/parser/lexer_flow.mll"
+# 1364 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let start = loc_of_lexbuf env lexbuf in
                         let buf = Buffer.create 127 in
                         let env, _end = comment env buf lexbuf in
                         let env = save_comment env start _end buf true in
                         jsx_tag env lexbuf )
-# 4824 "src/parser/lexer_flow.ml"
+# 4824 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 5 ->
-# 1369 "src/parser/lexer_flow.mll"
+# 1369 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, T_LESS_THAN )
-# 4829 "src/parser/lexer_flow.ml"
+# 4829 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 6 ->
-# 1370 "src/parser/lexer_flow.mll"
+# 1370 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, T_DIV )
-# 4834 "src/parser/lexer_flow.ml"
+# 4834 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 7 ->
-# 1371 "src/parser/lexer_flow.mll"
+# 1371 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, T_GREATER_THAN )
-# 4839 "src/parser/lexer_flow.ml"
+# 4839 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 8 ->
-# 1372 "src/parser/lexer_flow.mll"
+# 1372 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, T_LCURLY )
-# 4844 "src/parser/lexer_flow.ml"
+# 4844 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 9 ->
-# 1373 "src/parser/lexer_flow.mll"
+# 1373 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, T_COLON )
-# 4849 "src/parser/lexer_flow.ml"
+# 4849 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 10 ->
-# 1374 "src/parser/lexer_flow.mll"
+# 1374 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, T_PERIOD )
-# 4854 "src/parser/lexer_flow.ml"
+# 4854 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 11 ->
-# 1375 "src/parser/lexer_flow.mll"
+# 1375 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, T_ASSIGN )
-# 4859 "src/parser/lexer_flow.ml"
+# 4859 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 12 ->
-# 1377 "src/parser/lexer_flow.mll"
+# 1377 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( unicode_fix_cols lexbuf;
                         env, T_JSX_IDENTIFIER )
-# 4865 "src/parser/lexer_flow.ml"
+# 4865 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 13 ->
 let
-# 1379 "src/parser/lexer_flow.mll"
+# 1379 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                   quote
-# 4871 "src/parser/lexer_flow.ml"
+# 4871 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1380 "src/parser/lexer_flow.mll"
+# 1380 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       (
                         let start = loc_of_lexbuf env lexbuf in
                         let buf = Buffer.create 127 in
@@ -4884,27 +4884,27 @@ let
                         let raw = Buffer.contents raw in
                         env, T_JSX_TEXT (Loc.btwn start _end, value, raw)
                       )
-# 4888 "src/parser/lexer_flow.ml"
+# 4888 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 14 ->
-# 1394 "src/parser/lexer_flow.mll"
+# 1394 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, T_ERROR )
-# 4893 "src/parser/lexer_flow.ml"
+# 4893 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_jsx_tag_rec env lexbuf __ocaml_lex_state
 
 and jsx_child env start buf raw lexbuf =
-   __ocaml_lex_jsx_child_rec env start buf raw lexbuf 373
+    __ocaml_lex_jsx_child_rec env start buf raw lexbuf 373
 and __ocaml_lex_jsx_child_rec env start buf raw lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
 let
-# 1402 "src/parser/lexer_flow.mll"
+# 1402 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                 lt
-# 4906 "src/parser/lexer_flow.ml"
+# 4906 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 1403 "src/parser/lexer_flow.mll"
+# 1403 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_string raw lt;
                         Buffer.add_string buf lt;
                         Lexing.new_line lexbuf;
@@ -4914,30 +4914,30 @@ let
                         let raw = Buffer.contents raw in
                         env, T_JSX_TEXT (Loc.btwn start _end, value, raw)
                       )
-# 4918 "src/parser/lexer_flow.ml"
+# 4918 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
-# 1412 "src/parser/lexer_flow.mll"
+# 1412 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, T_EOF )
-# 4923 "src/parser/lexer_flow.ml"
+# 4923 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
-# 1413 "src/parser/lexer_flow.mll"
+# 1413 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, T_LESS_THAN )
-# 4928 "src/parser/lexer_flow.ml"
+# 4928 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 3 ->
-# 1414 "src/parser/lexer_flow.mll"
+# 1414 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( env, T_LCURLY )
-# 4933 "src/parser/lexer_flow.ml"
+# 4933 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 4 ->
 let
-# 1415 "src/parser/lexer_flow.mll"
+# 1415 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
          c
-# 4939 "src/parser/lexer_flow.ml"
+# 4939 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1415 "src/parser/lexer_flow.mll"
+# 1415 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char raw c;
                         Buffer.add_char buf c;
                         let env, _end =
@@ -4946,22 +4946,22 @@ let
                         let raw = Buffer.contents raw in
                         env, T_JSX_TEXT (Loc.btwn start _end, value, raw)
                       )
-# 4950 "src/parser/lexer_flow.ml"
+# 4950 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_jsx_child_rec env start buf raw lexbuf __ocaml_lex_state
 
 and jsx_text env mode buf raw lexbuf =
-   __ocaml_lex_jsx_text_rec env mode buf raw lexbuf 380
+    __ocaml_lex_jsx_text_rec env mode buf raw lexbuf 380
 and __ocaml_lex_jsx_text_rec env mode buf raw lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
 let
-# 1425 "src/parser/lexer_flow.mll"
+# 1425 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                          c
-# 4963 "src/parser/lexer_flow.ml"
+# 4963 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1426 "src/parser/lexer_flow.mll"
+# 1426 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( match mode, c with
                         | JSX_SINGLE_QUOTED_TEXT, '\''
                         | JSX_DOUBLE_QUOTED_TEXT, '"' ->
@@ -4976,79 +4976,79 @@ let
                             Buffer.add_char buf c;
                             jsx_text env mode buf raw lexbuf
                       )
-# 4980 "src/parser/lexer_flow.ml"
+# 4980 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
-# 1440 "src/parser/lexer_flow.mll"
+# 1440 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let env = illegal env (loc_of_lexbuf env lexbuf) in
                         env, loc_of_lexbuf env lexbuf
                       )
-# 4987 "src/parser/lexer_flow.ml"
+# 4987 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
 let
-# 1443 "src/parser/lexer_flow.mll"
+# 1443 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                 lt
-# 4993 "src/parser/lexer_flow.ml"
+# 4993 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 1444 "src/parser/lexer_flow.mll"
+# 1444 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_string raw lt;
                         Buffer.add_string buf lt;
                         Lexing.new_line lexbuf;
                         jsx_text env mode buf raw lexbuf
                       )
-# 5001 "src/parser/lexer_flow.ml"
+# 5001 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 3 ->
 let
-# 1449 "src/parser/lexer_flow.mll"
+# 1449 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                    n
-# 5007 "src/parser/lexer_flow.ml"
+# 5007 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf (lexbuf.Lexing.lex_start_pos + 3) (lexbuf.Lexing.lex_curr_pos + -1)
 and
-# 1449 "src/parser/lexer_flow.mll"
+# 1449 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                              s
-# 5012 "src/parser/lexer_flow.ml"
+# 5012 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 1450 "src/parser/lexer_flow.mll"
+# 1450 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_string raw s;
                         let code = int_of_string ("0x" ^ n) in
                         List.iter (Buffer.add_char buf) (utf16to8 code);
                         jsx_text env mode buf raw lexbuf
                       )
-# 5020 "src/parser/lexer_flow.ml"
+# 5020 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 4 ->
 let
-# 1455 "src/parser/lexer_flow.mll"
+# 1455 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                     n
-# 5026 "src/parser/lexer_flow.ml"
+# 5026 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf (lexbuf.Lexing.lex_start_pos + 2) (lexbuf.Lexing.lex_curr_pos + -1)
 and
-# 1455 "src/parser/lexer_flow.mll"
+# 1455 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                               s
-# 5031 "src/parser/lexer_flow.ml"
+# 5031 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 1456 "src/parser/lexer_flow.mll"
+# 1456 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_string raw s;
                         let code = int_of_string n in
                         List.iter (Buffer.add_char buf) (utf16to8 code);
                         jsx_text env mode buf raw lexbuf
                       )
-# 5039 "src/parser/lexer_flow.ml"
+# 5039 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 5 ->
 let
-# 1461 "src/parser/lexer_flow.mll"
+# 1461 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                        entity
-# 5045 "src/parser/lexer_flow.ml"
+# 5045 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf (lexbuf.Lexing.lex_start_pos + 1) (lexbuf.Lexing.lex_curr_pos + -1)
 and
-# 1461 "src/parser/lexer_flow.mll"
+# 1461 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                                       s
-# 5050 "src/parser/lexer_flow.ml"
+# 5050 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 1462 "src/parser/lexer_flow.mll"
+# 1462 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       (
                         Buffer.add_string raw s;
                         let code = match entity with
@@ -5311,59 +5311,59 @@ and
                         | None -> Buffer.add_string buf ("&" ^ entity ^";"));
                         jsx_text env mode buf raw lexbuf
                       )
-# 5315 "src/parser/lexer_flow.ml"
+# 5315 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 6 ->
 let
-# 1724 "src/parser/lexer_flow.mll"
+# 1724 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
          c
-# 5321 "src/parser/lexer_flow.ml"
+# 5321 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1724 "src/parser/lexer_flow.mll"
+# 1724 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char raw c;
                         Buffer.add_char buf c;
                         jsx_text env mode buf raw lexbuf )
-# 5327 "src/parser/lexer_flow.ml"
+# 5327 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_jsx_text_rec env mode buf raw lexbuf __ocaml_lex_state
 
 and template_tail env lexbuf =
-   __ocaml_lex_template_tail_rec env lexbuf 402
+    __ocaml_lex_template_tail_rec env lexbuf 402
 and __ocaml_lex_template_tail_rec env lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 1730 "src/parser/lexer_flow.mll"
+# 1730 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Lexing.new_line lexbuf;
                         template_tail env lexbuf )
-# 5340 "src/parser/lexer_flow.ml"
+# 5340 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
-# 1732 "src/parser/lexer_flow.mll"
+# 1732 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( unicode_fix_cols lexbuf;
                         template_tail env lexbuf )
-# 5346 "src/parser/lexer_flow.ml"
+# 5346 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
-# 1734 "src/parser/lexer_flow.mll"
+# 1734 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let start = loc_of_lexbuf env lexbuf in
                         let buf = Buffer.create 127 in
                         let env, _end = line_comment env buf lexbuf in
                         let env = save_comment env start _end buf false in
                         template_tail env lexbuf )
-# 5355 "src/parser/lexer_flow.ml"
+# 5355 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 3 ->
-# 1739 "src/parser/lexer_flow.mll"
+# 1739 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let start = loc_of_lexbuf env lexbuf in
                         let buf = Buffer.create 127 in
                         let env, _end = comment env buf lexbuf in
                         let env = save_comment env start _end buf true in
                         template_tail env lexbuf )
-# 5364 "src/parser/lexer_flow.ml"
+# 5364 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 4 ->
-# 1744 "src/parser/lexer_flow.mll"
+# 1744 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let start = loc_of_lexbuf env lexbuf in
                         let cooked = Buffer.create 127 in
                         let raw = Buffer.create 127 in
@@ -5377,10 +5377,10 @@ and __ocaml_lex_template_tail_rec env lexbuf __ocaml_lex_state =
                           literal = Buffer.contents literal;
                         }, is_tail))
                       )
-# 5381 "src/parser/lexer_flow.ml"
+# 5381 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 5 ->
-# 1757 "src/parser/lexer_flow.mll"
+# 1757 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let env = illegal env (loc_of_lexbuf env lexbuf) in
                         env, (T_TEMPLATE_PART (
                           loc_of_lexbuf env lexbuf,
@@ -5388,35 +5388,35 @@ and __ocaml_lex_template_tail_rec env lexbuf __ocaml_lex_state =
                           true
                         ))
                       )
-# 5392 "src/parser/lexer_flow.ml"
+# 5392 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_template_tail_rec env lexbuf __ocaml_lex_state
 
 and template_part env start cooked raw literal lexbuf =
-   __ocaml_lex_template_part_rec env start cooked raw literal lexbuf 425
+    __ocaml_lex_template_part_rec env start cooked raw literal lexbuf 425
 and __ocaml_lex_template_part_rec env start cooked raw literal lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 1766 "src/parser/lexer_flow.mll"
+# 1766 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( let env = illegal env (loc_of_lexbuf env lexbuf) in
                         env, Loc.btwn start (loc_of_lexbuf env lexbuf), true )
-# 5405 "src/parser/lexer_flow.ml"
+# 5405 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 1 ->
-# 1768 "src/parser/lexer_flow.mll"
+# 1768 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char literal '`';
                         env, Loc.btwn start (loc_of_lexbuf env lexbuf), true )
-# 5411 "src/parser/lexer_flow.ml"
+# 5411 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 2 ->
-# 1770 "src/parser/lexer_flow.mll"
+# 1770 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_string literal "${";
                         env, Loc.btwn start (loc_of_lexbuf env lexbuf), false )
-# 5417 "src/parser/lexer_flow.ml"
+# 5417 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 3 ->
-# 1772 "src/parser/lexer_flow.mll"
+# 1772 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char raw '\\';
                         Buffer.add_char literal '\\';
                         let env, _ = string_escape env cooked lexbuf in
@@ -5424,55 +5424,55 @@ and __ocaml_lex_template_part_rec env start cooked raw literal lexbuf __ocaml_le
                         Buffer.add_string raw str;
                         Buffer.add_string literal str;
                         template_part env start cooked raw literal lexbuf )
-# 5428 "src/parser/lexer_flow.ml"
+# 5428 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 4 ->
 let
-# 1782 "src/parser/lexer_flow.mll"
+# 1782 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
               lf
-# 5434 "src/parser/lexer_flow.ml"
+# 5434 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos (lexbuf.Lexing.lex_start_pos + 2) in
-# 1783 "src/parser/lexer_flow.mll"
+# 1783 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_string raw lf;
                         Buffer.add_string literal lf;
                         Buffer.add_string cooked "\n";
                         Lexing.new_line lexbuf;
                         template_part env start cooked raw literal lexbuf )
-# 5442 "src/parser/lexer_flow.ml"
+# 5442 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 5 ->
 let
-# 1788 "src/parser/lexer_flow.mll"
+# 1788 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                      lf
-# 5448 "src/parser/lexer_flow.ml"
+# 5448 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1789 "src/parser/lexer_flow.mll"
+# 1789 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char raw lf;
                         Buffer.add_char literal lf;
                         Buffer.add_char cooked '\n';
                         Lexing.new_line lexbuf;
                         template_part env start cooked raw literal lexbuf )
-# 5456 "src/parser/lexer_flow.ml"
+# 5456 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
   | 6 ->
 let
-# 1794 "src/parser/lexer_flow.mll"
+# 1794 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
          c
-# 5462 "src/parser/lexer_flow.ml"
+# 5462 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 1794 "src/parser/lexer_flow.mll"
+# 1794 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
                       ( Buffer.add_char raw c;
                         Buffer.add_char literal c;
                         Buffer.add_char cooked c;
                         template_part env start cooked raw literal lexbuf )
-# 5469 "src/parser/lexer_flow.ml"
+# 5469 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_template_part_rec env start cooked raw literal lexbuf __ocaml_lex_state
 
 ;;
 
-# 1799 "src/parser/lexer_flow.mll"
+# 1799 "node_modules/flow-dev-tools/src/parser/lexer_flow.mll"
  
   let regexp env =
     get_result_and_clear_state (regexp env env.lex_lb)
@@ -5498,4 +5498,4 @@ let
   let token env =
     get_result_and_clear_state (token env env.lex_lb)
 
-# 5502 "src/parser/lexer_flow.ml"
+# 5502 "node_modules/flow-dev-tools/src/parser/lexer_flow.ml"
